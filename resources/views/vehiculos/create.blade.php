@@ -30,7 +30,7 @@
              <div class="col-md-offset-1 col-md-4">   
               <div class="form-group @if ($errors->has('placa')) has-error @endif">                
                 <label>Matrícula</label>
-                <input type="text" placeholder="VEN027Y" class="form-control" name="placa">
+                <input type="text" placeholder="VEN07Y" maxlength="6" class="form-control" name="placa">
                 @if ($errors->has('placa')) <p class="help-block"> Este campo es requerido.</p> @endif
               </div>
             </div>          
@@ -52,7 +52,7 @@
              <div class="col-md-offset-1 col-md-4">  
               <div class="form-group @if ($errors->has('anio')) has-error @endif">                
                 <label>Año</label>
-                <input type="text" placeholder="2015" class="form-control" name="anio">
+                <input type="text" placeholder="2015" maxlength="4" size="4" class="form-control" name="anio">
                 @if ($errors->has('anio')) <p class="help-block"> Este campo es requerido.</p> @endif  
               </div>              
                </div>          

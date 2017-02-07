@@ -24,7 +24,7 @@
       <div class="panel panel-info">
         <div class="panel-heading"><center>Registrar Nuevo Vehículo</center> </div>
         <div class="panel-body">
-          <form method="post" action="{{ url('/vehiculo') }}">
+          <form name="create" id="create" method="post" action="{{ url('/vehiculo') }}">
            <input type="hidden" name="_token" value="{{ csrf_token() }}">
            <div class="col-md-12"> 
              <div class="col-md-offset-1 col-md-4">   
@@ -52,7 +52,7 @@
              <div class="col-md-offset-1 col-md-4">  
               <div class="form-group @if ($errors->has('anio')) has-error @endif">                
                 <label>Año</label>
-                <input type="text" placeholder="2015" maxlength="4" size="4" class="form-control" name="anio">
+                <input type="text" placeholder="2015" max:2019 class="form-control" name="anio">
                 @if ($errors->has('anio')) <p class="help-block"> Este campo es requerido.</p> @endif  
               </div>              
                </div>          
@@ -124,3 +124,28 @@
 </div>
 </div>
 @endsection
+
+<script type="text/javascript">
+
+    window.onload = function () 
+    {
+        document.create.focus();
+          document.create.addEventListener('submit', Validate);
+    }
+
+    function Validate(evObject)
+     {
+        evObject.preventDefault();
+          var camposLlenos = true;
+          var formu = document.create;
+            for (var i=0; i<formu.length; i++) {
+                if(formu[i].type =='text') {
+                     if (formu[i].value == null || formu[i].value.length == 0 || /^\s*$/.test(formu[i].value)){
+                         swal ('Hay campos vacíos');
+                         camposLlenos=false;
+             }
+         }
+     }
+        if (camposLlenos ==true) {formu.submit();}
+ }
+</script>

@@ -24,7 +24,7 @@
     <div class="panel panel-info">
     <div class="panel-heading"><center> Editar vehiculo</center> </div>
     <div class="panel-body">
-     <form class="" action=" {{ url('/vehiculo') }}/{{ $auto->id }}" method="post">
+     <form name="create" id="create" class="" action=" {{ url('/vehiculo') }}/{{ $auto->id }}" method="post">
         <div class="col-md-12"> 
           <div class="col-md-offset-1 col-md-4">     
           <div class="form-group @if ($errors->has('placa')) has-error @endif">
@@ -133,3 +133,28 @@
 </div>
 </div>
 @endsection
+
+<script type="text/javascript">
+
+    window.onload = function () 
+    {
+        document.create.focus();
+          document.create.addEventListener('submit', Validate);
+    }
+
+    function Validate(evObject)
+     {
+        evObject.preventDefault();
+          var camposLlenos = true;
+          var formu = document.create;
+            for (var i=0; i<formu.length; i++) {
+                if(formu[i].type =='text') {
+                     if (formu[i].value == null || formu[i].value.length == 0 || /^\s*$/.test(formu[i].value)){
+                         swal ('Hay campos vacíos');
+                         camposLlenos=false;
+             }
+         }
+     }
+        if (camposLlenos ==true) {formu.submit();}
+ }
+</script>

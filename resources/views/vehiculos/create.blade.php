@@ -92,14 +92,14 @@
              <div class="col-md-offset-1 col-md-4">     
               <div class="form-group @if ($errors->has('propietario')) has-error @endif">                
                 <label>Propietario</label>
-                <input type="text" placeholder="Osward" class="form-control" name="propietario">
+                <input type="text" placeholder="Osward" pattern="[A-Z]" class="form-control" name="propietario">
                 @if ($errors->has('propietario')) <p class="help-block"> Este campo es requerido.</p> @endif 
               </div>              
               </div>          
              <div class="col-md-offset-1 col-md-4">     
               <div class="form-group @if ($errors->has('telf_prop')) has-error @endif">                
                 <label>Teléfono</label>
-                <input type="text" placeholder="0414-XXXXXXX" class="form-control" name="telf_prop">
+                <input type="text" placeholder="0414-XXXXXXX" pattern="^([0-9]{4})-([0-9]{7})$" class="form-control" name="telf_prop">
                 @if ($errors->has('telf_prop')) <p class="help-block"> Este campo es requerido.</p> @endif 
               </div>   
               </div>          

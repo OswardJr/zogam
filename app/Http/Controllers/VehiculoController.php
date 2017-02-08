@@ -44,14 +44,14 @@ class VehiculoController extends Controller
         'placa'=> 'required',
         'marca' => 'required',
         'modelo' => 'required',
-        'anio' => 'required',
+        'anio' => 'required|min:4',
         'serial_motor' => 'required',
         'serial_carro' => 'required',
         'color' => 'required',
         'tipo' => 'required',
         'propietario' => 'required',
         'telf_prop' => 'required',
-        'email_prop' => 'required',
+        'email_prop' => 'required', 
         ])->validate();
 
       $vehiculo = new Vehiculo();

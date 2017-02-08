@@ -19,18 +19,18 @@
         </div>
     </div>
     @endif
+    <a href="{{ url('/home') }}" style="float:right; color:teal;" class="btn btn-default"><span class="fa fa-mail-reply-all fa-lg">  LISTADO</span></a><br><br>
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-info">
-        <div class="panel-heading"><center> Registrar nuevo vehiculo</center> </div>
+        <div class="panel-heading"><center>Registrar Nuevo Vehículo</center> </div>
         <div class="panel-body">
-          <form method="post" action="{{ url('/vehiculo') }}">
+          <form name="create" id="create" method="post" action="{{ url('/vehiculo') }}">
            <input type="hidden" name="_token" value="{{ csrf_token() }}">
            <div class="col-md-12"> 
-
              <div class="col-md-offset-1 col-md-4">   
               <div class="form-group @if ($errors->has('placa')) has-error @endif">                
                 <label>Matrícula</label>
-                <input type="text" placeholder="VEN027Y" class="form-control" name="placa">
+                <input type="text" placeholder="VEN07Y" maxlength="6" class="form-control" name="placa">
                 @if ($errors->has('placa')) <p class="help-block"> Este campo es requerido.</p> @endif
               </div>
             </div>          
@@ -52,7 +52,7 @@
              <div class="col-md-offset-1 col-md-4">  
               <div class="form-group @if ($errors->has('anio')) has-error @endif">                
                 <label>Año</label>
-                <input type="text" placeholder="2015" class="form-control" name="anio">
+                <input type="text" placeholder="2015" max:2019 class="form-control" name="anio">
                 @if ($errors->has('anio')) <p class="help-block"> Este campo es requerido.</p> @endif  
               </div>              
                </div>          
@@ -92,14 +92,14 @@
              <div class="col-md-offset-1 col-md-4">     
               <div class="form-group @if ($errors->has('propietario')) has-error @endif">                
                 <label>Propietario</label>
-                <input type="text" placeholder="Osward" class="form-control" name="propietario">
+                <input type="text" placeholder="Osward" pattern="[A-Z]" class="form-control" name="propietario">
                 @if ($errors->has('propietario')) <p class="help-block"> Este campo es requerido.</p> @endif 
               </div>              
               </div>          
              <div class="col-md-offset-1 col-md-4">     
               <div class="form-group @if ($errors->has('telf_prop')) has-error @endif">                
                 <label>Teléfono</label>
-                <input type="text" placeholder="0414-XXXXXXX" class="form-control" name="telf_prop">
+                <input type="text" placeholder="0414-XXXXXXX" pattern="^([0-9]{4})-([0-9]{7})$" class="form-control" name="telf_prop">
                 @if ($errors->has('telf_prop')) <p class="help-block"> Este campo es requerido.</p> @endif 
               </div>   
               </div>          
@@ -115,7 +115,6 @@
           <div class="col-md-12 text-center">
             <div class="col-md-offset-4 col-md-4">
               <button type="submit" class="btn btn-success" style=""><span class="fa fa-save"></span> Guardar</button>
-              <button class="btn btn-warning" onclick="javascript: window.history.back()"><span class="fa fa-arrow-left"></span> Volver</button>
             </div> 
           </div>    
         </form>
@@ -125,3 +124,28 @@
 </div>
 </div>
 @endsection
+
+<script type="text/javascript">
+
+    window.onload = function () 
+    {
+        document.create.focus();
+          document.create.addEventListener('submit', Validate);
+    }
+
+    function Validate(evObject)
+     {
+        evObject.preventDefault();
+          var camposLlenos = true;
+          var formu = document.create;
+            for (var i=0; i<formu.length; i++) {
+                if(formu[i].type =='text') {
+                     if (formu[i].value == null || formu[i].value.length == 0 || /^\s*$/.test(formu[i].value)){
+                         swal ('Hay campos vacíos');
+                         camposLlenos=false;
+             }
+         }
+     }
+        if (camposLlenos ==true) {formu.submit();}
+ }
+</script>

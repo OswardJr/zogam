@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     @if(Session::get('message'))
     <div class="col-md-8 col-md-offset-2">
@@ -19,79 +19,101 @@
         </div>
     </div>
     @endif
+    <a href="{{ url('/home') }}" style="float:right; color:teal;" class="btn btn-default"><span class="fa fa-mail-reply-all fa-lg">  LISTADO</span></a><br><br>    
     <div class="col-md-8 col-md-offset-2">
     <div class="panel panel-info">
     <div class="panel-heading"><center> Editar vehiculo</center> </div>
     <div class="panel-body">
-    <center><h3>Editar vehiculo</h3></center>
-    <br>
-     <form class="" action=" {{ url('/vehiculo') }}/{{ $auto->id }}" method="post">
+     <form name="create" id="create" class="" action=" {{ url('/vehiculo') }}/{{ $auto->id }}" method="post">
+        <div class="col-md-12"> 
+          <div class="col-md-offset-1 col-md-4">     
+          <div class="form-group @if ($errors->has('placa')) has-error @endif">
+            <label for="">Placa</label>
+            <input type="text" class="form-control" name="placa" value="{{ $auto->placa }}" placeholder="Placa">
+            @if ($errors->has('placa')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
+          </div>
+      </div>    
 
-      <div class="form-group @if ($errors->has('placa')) has-error @endif col-md-6">
-        <label for="">Placa</label>
-        <input type="text" class="form-control" name="placa" value="{{ $auto->placa }}" placeholder="Placa"><br>
-        @if ($errors->has('placa')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
-      </div>
+          <div class="col-md-offset-1 col-md-4">     
+          <div class="form-group @if ($errors->has('marca')) has-error @endif">
+            <label for="">Marca</label>
+            <input type="text" class="form-control" name="marca" value="{{ $auto->marca }}" placeholder="marca">
+            @if ($errors->has('marca')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
+          </div>
+      </div>    
 
-      <div class="form-group @if ($errors->has('marca')) has-error @endif col-md-6">
-        <label for="">Marca</label>
-        <input type="text" class="form-control" name="marca" value="{{ $auto->marca }}" placeholder="marca"><br>
-        @if ($errors->has('marca')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
-      </div>
+          <div class="col-md-offset-1 col-md-4">     
+          <div class="form-group @if ($errors->has('modelo')) has-error @endif">
+            <label for="">Modelo</label>
+            <input type="text" class="form-control" name="modelo" value="{{ $auto->modelo }}" placeholder="modelo">
+            @if ($errors->has('modelo')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
+          </div>
+      </div>    
 
-      <div class="form-group @if ($errors->has('modelo')) has-error @endif col-md-6">
-        <label for="">Modelo</label>
-        <input type="text" class="form-control" name="modelo" value="{{ $auto->modelo }}" placeholder="modelo"><br>
-        @if ($errors->has('modelo')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
-      </div>
+          <div class="col-md-offset-1 col-md-4">     
+          <div class="form-group @if ($errors->has('anio')) has-error @endif">
+            <label for="">Año</label>
+            <input type="text" class="form-control" maxlength="4" name="anio" value="{{ $auto->anio }}" placeholder="año">
+            @if ($errors->has('anio')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
+          </div>
+      </div>    
 
-      <div class="form-group @if ($errors->has('anio')) has-error @endif col-md-6">
-        <label for="">Año</label>
-        <input type="text" class="form-control" name="anio" value="{{ $auto->anio }}" placeholder="año"><br>
-        @if ($errors->has('anio')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
-      </div>
+          <div class="col-md-offset-1 col-md-4">     
+          <div class="form-group @if ($errors->has('serial_motor')) has-error @endif">
+            <label for="">Serial del motor</label>
+            <input type="text" class="form-control" name="serial_motor" value="{{ $auto->serial_motor }}" placeholder="serial motor">
+            @if ($errors->has('serial_motor')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
+          </div>
+      </div>    
 
-      <div class="form-group @if ($errors->has('serial_motor')) has-error @endif col-md-6">
-        <label for="">Serial del motor</label>
-        <input type="text" class="form-control" name="serial_motor" value="{{ $auto->serial_motor }}" placeholder="serial motor"><br>
-        @if ($errors->has('serial_motor')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
-      </div>
+          <div class="col-md-offset-1 col-md-4">     
+          <div class="form-group @if ($errors->has('serial_carro')) has-error @endif">
+            <label for="">Serial de la carroceria</label>
+            <input type="text" class="form-control" name="serial_carro" value="{{ $auto->serial_carro }}" placeholder="serial carro">
+            @if ($errors->has('serial_carro')) <p class="help-block"> {Este campo es requerido.</p> @endif <br>
+          </div>
+      </div>    
 
-      <div class="form-group @if ($errors->has('serial_carro')) has-error @endif col-md-6">
-        <label for="">Serial de la carroceria</label>
-        <input type="text" class="form-control" name="serial_carro" value="{{ $auto->serial_carro }}" placeholder="serial carro"><br>
-        @if ($errors->has('serial_carro')) <p class="help-block"> {Este campo es requerido.</p> @endif <br>
-      </div>
+          <div class="col-md-offset-1 col-md-4">     
+          <div class="form-group @if ($errors->has('color')) has-error @endif">
+            <label for="">Color</label>
+            <input type="text" class="form-control" name="color" value="{{ $auto->color }}" placeholder="color">
+            @if ($errors->has('color')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
+          </div>
+      </div>    
 
-      <div class="form-group @if ($errors->has('color')) has-error @endif col-md-6">
-        <label for="">Color</label>
-        <input type="text" class="form-control" name="color" value="{{ $auto->color }}" placeholder="color"><br>
-        @if ($errors->has('color')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
-      </div>
+          <div class="col-md-offset-1 col-md-4">     
+          <div class="form-group @if ($errors->has('tipo')) has-error @endif">
+            <label for="">Tipo de veh&iacuteculo</label>
+            <input type="text" class="form-control" name="tipo" value="{{ $auto->tipo }}" placeholder="tipo">
+            @if ($errors->has('tipo')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
+          </div>
+      </div>    
 
-      <div class="form-group @if ($errors->has('tipo')) has-error @endif col-md-6">
-        <label for="">Tipo de veh&iacuteculo</label>
-        <input type="text" class="form-control" name="tipo" value="{{ $auto->tipo }}" placeholder="tipo"><br>
-        @if ($errors->has('tipo')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
-      </div>
+          <div class="col-md-offset-1 col-md-4">     
+          <div class="form-group @if ($errors->has('propietario')) has-error @endif">
+            <label for="">Propietario</label>
+            <input type="text" class="form-control" pattern="[A-Z]" name="propietario" value="{{ $auto->propietario }}" placeholder="propietario">
+            @if ($errors->has('propietario')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
+          </div>
+      </div>    
 
-      <div class="form-group @if ($errors->has('propietario')) has-error @endif col-md-6">
-        <label for="">Propietario</label>
-        <input type="text" class="form-control" name="propietario" value="{{ $auto->propietario }}" placeholder="propietario"><br>
-        @if ($errors->has('propietario')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
-      </div>
+          <div class="col-md-offset-1 col-md-4">     
+          <div class="form-group @if ($errors->has('telf_prop')) has-error @endif">
+          <label for="telefono">Tel&eacutefono</label>
+            <input type="text" class="form-control" pattern="^([0-9]{4})-([0-9]{7})$" name="telf_prop" value="{{ $auto->telf_prop }}" placeholder="telefono propietario">
+            @if ($errors->has('telf_prop')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
+          </div>
+      </div>    
 
-      <div class="form-group @if ($errors->has('telf_prop')) has-error @endif col-md-6">
-      <label for="telefono">Tel&eacutefono</label>
-        <input type="text" class="form-control" name="telf_prop" value="{{ $auto->telf_prop }}" placeholder="telefono propietario"><br>
-        @if ($errors->has('telf_prop')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
-      </div>
-
-      <div class="form-group @if ($errors->has('email_prop')) has-error @endif col-md-6">
-        <label for="">Correo electronico</label>
-        <input type="text" class="form-control" name="email_prop" value="{{ $auto->email_prop }}" placeholder="email propietario"><br>
-        @if ($errors->has('email_prop')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
-      </div>
+          <div class="col-md-offset-1 col-md-4">     
+          <div class="form-group @if ($errors->has('email_prop')) has-error @endif">
+            <label for="">Correo electronico</label>
+            <input type="text" class="form-control" name="email_prop" value="{{ $auto->email_prop }}" placeholder="email propietario">
+            @if ($errors->has('email_prop')) <p class="help-block"> Este campo es requerido.</p> @endif <br>
+          </div>
+      </div>    
+    </div>    
 
       <input type="hidden" name="_method" value="put">
 
@@ -101,7 +123,6 @@
       <div class="row">
       <div class="col-md-12 text-center" style="margin-bottom: 50px;">
         <button type="submit" name="name" class="btn btn-success"><span class="fa fa-save"></span> Guardar</button>
-        <button type="reset" name="Restaurar" class="btn btn-danger" ><span class="fa fa-refresh"></span> Restaurar</button>
         <br>
       </div>
       </div>
@@ -112,3 +133,28 @@
 </div>
 </div>
 @endsection
+
+<script type="text/javascript">
+
+    window.onload = function () 
+    {
+        document.create.focus();
+          document.create.addEventListener('submit', Validate);
+    }
+
+    function Validate(evObject)
+     {
+        evObject.preventDefault();
+          var camposLlenos = true;
+          var formu = document.create;
+            for (var i=0; i<formu.length; i++) {
+                if(formu[i].type =='text') {
+                     if (formu[i].value == null || formu[i].value.length == 0 || /^\s*$/.test(formu[i].value)){
+                         swal ('Hay campos vacíos');
+                         camposLlenos=false;
+             }
+         }
+     }
+        if (camposLlenos ==true) {formu.submit();}
+ }
+</script>
